@@ -2,10 +2,12 @@ package cl.testHibernate;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -25,6 +27,14 @@ public class Empleado implements Serializable{
     @Column(name = "FECHA_NACIMIENTO")
     private LocalDate fechaNacimiento;
     
+    // cascade = CascadeType.ALL, para que cuando se cree una direccion
+    // se cree inmediatamente sin necesidad de crearla por separado.
+    // o sea si llamo a setDireccion(new Direccion...), JPA persiste por mi
+    // el objeto Direccion
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_DIRECCION")
+    private Direccion direccion;
+    
     public Empleado(){}
 
     public Empleado(Long codigo, String nombre, String apellidos, LocalDate fechaNacimiento) {
@@ -33,6 +43,16 @@ public class Empleado implements Serializable{
         this.apellidos = apellidos;
         this.fechaNacimiento = fechaNacimiento;
     }
+    
+    
+    public Direccion getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(Direccion direccion) {
+        this.direccion = direccion;
+    }
+    
 
     public Long getCodigo() {
         return codigo;
@@ -68,8 +88,6 @@ public class Empleado implements Serializable{
 
     @Override
     public String toString() {
-        return "Empleado{" + "codigo=" + codigo + ", nombre=" + nombre + ", apellidos=" + apellidos + ", fechaNacimiento=" + fechaNacimiento + '}';
+        return "Empleado{" + "codigo=" + codigo + ", nombre=" + nombre + ", apellidos=" + apellidos + ", fechaNacimiento=" + fechaNacimiento + ", direccion=" + direccion + '}';
     }
-    
-    
 }

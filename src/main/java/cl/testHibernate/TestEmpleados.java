@@ -31,6 +31,22 @@ public class TestEmpleados {
                 "Muñoz Ampuero",
                 LocalDate.of(1987, Month.MAY, 25)
         );
+        
+        
+        /*
+        Como añadí esto @OneToOne(cascade = CascadeType.ALL) al atributo direccion
+        de Empleado, no es necesario crear las direcciones antes del empleado
+        */
+//        Direccion direccion_1 = new Direccion(1L, "Calle falsa 123", "Springfield", "Springfield", "EEUU");
+//        Direccion direccion_2 = new Direccion(2L, "Villa Florencia", "Rancagua", "Rancagua", "Chile");
+//        
+//        crear(direccion_1);
+//        crear(direccion_2);
+//        empleado_1.setDireccion(direccion_1);
+//        empleado_1.setDireccion(direccion_2);
+        
+        empleado_1.setDireccion(new Direccion(1L, "Calle falsa 123", "Springfield", "Springfield", "EEUU"));
+        empleado_2.setDireccion(new Direccion(2L, "Villa Florencia", "Rancagua", "Rancagua", "Chile"));
 
         crear(empleado_1);
         crear(empleado_2);
@@ -62,9 +78,9 @@ public class TestEmpleados {
         manager.getTransaction().commit();
     }
 
-    private static void crear(Empleado empleado){
+    private static void crear(Object o){
         manager.getTransaction().begin();
-        manager.persist(empleado);
+        manager.persist(o);
         // Cambia el apellido de la entidad, incluso despues de persistirlo
         // ya que es una entidad "managed"
 //        empleado.setApellidos("Otro apellido");

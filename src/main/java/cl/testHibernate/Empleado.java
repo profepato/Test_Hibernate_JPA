@@ -1,6 +1,7 @@
 package cl.testHibernate;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,11 +23,11 @@ public class Empleado implements Serializable{
     private String apellidos;
     
     @Column(name = "FECHA_NACIMIENTO")
-    private Date fechaNacimiento;
+    private LocalDate fechaNacimiento;
     
     public Empleado(){}
 
-    public Empleado(Long codigo, String nombre, String apellidos, Date fechaNacimiento) {
+    public Empleado(Long codigo, String nombre, String apellidos, LocalDate fechaNacimiento) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -57,11 +58,11 @@ public class Empleado implements Serializable{
         this.apellidos = apellidos;
     }
 
-    public Date getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 

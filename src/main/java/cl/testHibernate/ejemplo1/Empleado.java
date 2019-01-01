@@ -1,4 +1,4 @@
-package cl.testHibernate;
+package cl.testHibernate.ejemplo1;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -51,6 +51,7 @@ public class Empleado implements Serializable{
 
     public void setDireccion(Direccion direccion) {
         this.direccion = direccion;
+        this.direccion.setEmpleado(this);
     }
     
 

@@ -1,0 +1,18 @@
+Autor -- Libro
+
+1 autor -- Muchos libros
+
+la PK de autor, pasa como FK del libro
+ 
+
+o sea, en la clase Autor:
+@OneToMany(mappedBy = "autor", cascade = CascadeType.ALL)
+private List<Libro> libros = new ArrayList<>();
+
+y en la clase Libro:
+@ManyToOne(fetch = FetchType.LAZY)
+@JoinColumn(name = "ID_AUTOR")// ese nombre se lo damos en la clase Autor: @Column(name = "ID_AUTOR")
+private Autor autor;
+
+
+

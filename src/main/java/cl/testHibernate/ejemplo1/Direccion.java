@@ -1,9 +1,11 @@
-package cl.testHibernate;
+package cl.testHibernate.ejemplo1;
 
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -24,6 +26,21 @@ public class Direccion implements Serializable{
     
     @Column(name = "PAIS")
     private String pais;
+    
+    // Uno a Uno inverso, direccion es el nombre del atributo en la clase
+    // Empleado
+    // Fetch LAZY quiere decir que a menos que se llame a getEmpleado
+    // no se llama a la base de datos
+    @OneToOne(mappedBy = "direccion", fetch = FetchType.LAZY)
+    private Empleado empleado;
+
+    public Empleado getEmpleado() {
+        return empleado;
+    }
+
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
+    }
 
     public Direccion() {
     }
@@ -78,7 +95,7 @@ public class Direccion implements Serializable{
 
     @Override
     public String toString() {
-        return "Direccion{" + "id=" + id + ", direccion=" + direccion + ", localidad=" + localidad + ", provincia=" + provincia + ", pais=" + pais + '}';
+        return "Direccion{" + "id=" + id + ", direccion=" + direccion + ", localidad=" + localidad + ", provincia=" + provincia + ", pais=" + pais + ", empleado=" + empleado.getCodigo() + '}';
     }
     
     

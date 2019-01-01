@@ -1,14 +1,13 @@
-package cl.testHibernate;
+package cl.testHibernate.ejemplo1;
 
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.GregorianCalendar;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class TestEmpleados {
+public class Main {
 
     private static EntityManagerFactory emf;
     private static EntityManager manager;
@@ -53,18 +52,18 @@ public class TestEmpleados {
         
         imprimirTodo();
         
-        // encuentra un empleado por identificador
-        // si no lo encuentra es null
-        Empleado e = manager.find(Empleado.class, 1L);
-        // el apellido se cambia inmediatamente porque 
-        // esa entidad es managed
-        e.setApellidos("Otro");
-        imprimirTodo();
+//        // encuentra un empleado por identificador
+//        // si no lo encuentra es null
+//        Empleado e = manager.find(Empleado.class, 1L);
+//        // el apellido se cambia inmediatamente porque 
+//        // esa entidad es managed
+//        e.setApellidos("Otro");
+//        imprimirTodo();
         
-        eliminar(1L);
-        
-        imprimirTodo();
-        
+//        eliminar(1L);
+//        
+//        imprimirTodo();
+//        
         
         manager.close();
     }
